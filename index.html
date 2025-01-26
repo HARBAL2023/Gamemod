@@ -499,7 +499,7 @@
                             <span><i class="fas fa-download"></i> Downloads: 750K+</span>
                             <span><i class="fas fa-calendar-alt"></i> Last Updated: Jan 2025</span>
                         </div>
-                        <a href="https://tinyurl.com/Gamedownloadapk" class="download-btn" aria-label="Download Minecraft Mod">
+                        <a href="https://tinyurl.com/Robloxmodaa" class="download-btn" aria-label="Download Minecraft Mod">
                             <i class="fas fa-download"></i> Download
                         </a>
                     </div>
@@ -521,7 +521,7 @@
                             <span><i class="fas fa-download"></i> Downloads: 500K+</span>
                             <span><i class="fas fa-calendar-alt"></i> Last Updated: Feb 2025</span>
                         </div>
-                        <a href="https://tinyurl.com/Gamedownloadapk" class="download-btn" aria-label="Download Roblox Mod">
+                        <a href="https://tinyurl.com/Robloxmodaa" class="download-btn" aria-label="Download Roblox Mod">
                             <i class="fas fa-download"></i> Download
                         </a>
                     </div>
@@ -543,7 +543,7 @@
                             <span><i class="fas fa-download"></i> Downloads: 300K+</span>
                             <span><i class="fas fa-calendar-alt"></i> Last Updated: Jan 2025</span>
                         </div>
-                        <a href="https://tinyurl.com/Gamedownloadapk" class="download-btn" aria-label="Download Train Valley 2">
+                        <a href="https://tinyurl.com/Robloxmodaa" class="download-btn" aria-label="Download Train Valley 2">
                             <i class="fas fa-download"></i> Download
                         </a>
                     </div>
@@ -608,6 +608,24 @@
 
         mobileMenuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        // Search Functionality
+        const searchInput = document.getElementById('game-search');
+        const modList = document.getElementById('mod-list');
+        const gameCards = modList.getElementsByClassName('game-card');
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            Array.from(gameCards).forEach(card => {
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
