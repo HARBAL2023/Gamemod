@@ -12,9 +12,9 @@
         :root {
             --primary-color: #3b82f6;
             --secondary-color: #60a5fa;
-            --background-dark: #f8f9fa; /* Light mode background */
-            --card-background: #ffffff; /* Light mode card background */
-            --text-light: #333333; /* Light mode text color */
+            --background-dark: #f8f9fa;
+            --card-background: #ffffff;
+            --text-light: #333333;
             --white: #ffffff;
             --transition-speed: 0.3s;
         }
@@ -23,9 +23,9 @@
         [data-theme="dark"] {
             --primary-color: #3b82f6;
             --secondary-color: #60a5fa;
-            --background-dark: #0f172a; /* Dark mode background */
-            --card-background: #1e293b; /* Dark mode card background */
-            --text-light: #94a3b8; /* Dark mode text color */
+            --background-dark: #0f172a;
+            --card-background: #1e293b;
+            --text-light: #94a3b8;
             --white: #ffffff;
         }
 
@@ -52,7 +52,6 @@
             padding: 20px;
         }
 
-        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -76,7 +75,6 @@
             color: var(--primary-color);
         }
 
-        /* Improved Navigation */
         .main-nav {
             display: flex;
             justify-content: space-between;
@@ -107,7 +105,6 @@
             transform: scale(1.1);
         }
 
-        /* Mobile Navigation */
         .mobile-menu-toggle {
             display: none;
             cursor: pointer;
@@ -146,7 +143,6 @@
             width: 100%;
         }
 
-        /* Hero Section */
         .hero-section {
             background: url('https://via.placeholder.com/1500x600?text=Game+Mods+Hub') no-repeat center center/cover;
             padding: 100px 20px;
@@ -180,7 +176,6 @@
             background: var(--secondary-color);
         }
 
-        /* Enhanced Search */
         .search-filter-container {
             max-width: 800px;
             margin: 40px auto;
@@ -218,7 +213,6 @@
             background: var(--secondary-color);
         }
 
-        /* Filter Section */
         .filter-section {
             display: flex;
             justify-content: center;
@@ -241,7 +235,6 @@
             color: var(--white);
         }
 
-        /* Game List Grid */
         .game-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -338,7 +331,6 @@
             transform: scale(1.05);
         }
 
-        /* Footer */
         .main-footer {
             background: var(--card-background);
             padding: 40px 0;
@@ -380,7 +372,6 @@
             color: var(--white);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .main-nav {
                 flex-direction: column;
@@ -408,7 +399,6 @@
     </style>
 </head>
 <body>
-    <!-- Theme Toggle Button -->
     <button class="theme-toggle" id="theme-toggle">
         <i class="fas fa-moon"></i>
     </button>
@@ -460,7 +450,6 @@
 
         <main id="main-content">
             <div class="game-list" id="mod-list">
-                <!-- Game Mod Cards -->
                 <div class="game-card" data-category="popular mod">
                     <img src="https://play-lh.googleusercontent.com/LByrur1mTmPeNr0ljI-uAUcct1rzmTve5Esau1SwoAzjBXQUby6uHIfHbF9TAT51mgHm=w480-h960-rw" 
                          alt="Clash of Clans Enhanced Mod" 
@@ -576,18 +565,15 @@
     </footer>
 
     <script>
-        // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
 
-        // Check for saved theme in localStorage
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             body.setAttribute('data-theme', savedTheme);
             updateToggleIcon(savedTheme);
         }
 
-        // Toggle theme on button click
         themeToggle.addEventListener('click', () => {
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -596,18 +582,33 @@
             updateToggleIcon(newTheme);
         });
 
-        // Update toggle icon based on theme
         function updateToggleIcon(theme) {
             const icon = themeToggle.querySelector('i');
             icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // Mobile Menu Toggle
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const navLinks = document.querySelector('.nav-links');
 
         mobileMenuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+        });
+
+        const searchInput = document.getElementById('game-search');
+        const modList = document.getElementById('mod-list');
+        const gameCards = modList.getElementsByClassName('game-card');
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            Array.from(gameCards).forEach(card => {
+                const title = card.querySelector('h2').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
